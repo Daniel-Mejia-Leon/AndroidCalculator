@@ -39,24 +39,32 @@ class MainActivity : AppCompatActivity() {
         //it the text of button, and then tvDisplay.text is going to be equal to stringNumber with the button text
         //previously added
 
+        var buttonsNumbers: Array<Button>
         tvDisplay.text = ""
         nextDisplay.text = ""
         //var stringNumber = ""
         var value1: Int
         var value2: Int
         var result: Int
-        //println(stringNumber.javaClass.name)
+        //println(buttonsNumbers.indices.javaClass.name)
 
+        buttonsNumbers = arrayOf(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9)
+        for (i in buttonsNumbers.indices){
+            buttonsNumbers[i].setOnClickListener {
+                stringNumber.append(buttonsNumbers[i].text)
+                tvDisplay.text = stringNumber
+            }
 
+        }
         //click a number and displays in the screen
-        fun setOnClick(button: Button){
+        /*fun setOnClick(button: Button){
             button.setOnClickListener {
                 //stringNumber += button.text
                 stringNumber.append(button.text)
                 tvDisplay.text = stringNumber
 
             }
-        }
+        }*/
 
 
         buttonPlus.setOnClickListener {
@@ -78,17 +86,11 @@ class MainActivity : AppCompatActivity() {
             nextDisplay.text = ""
             operatorDisplay.text = ""
 
-
         }
 
 
-        /*System.out.println(stringNumber.javaClass.name)
-        var x = "mama"
-        var y = "mami"
-        System.out.println(x.toInt() + y.toInt())*/
 
-
-        setOnClick(button0)
+        /*setOnClick(button0)
         setOnClick(button1)
         setOnClick(button2)
         setOnClick(button3)
@@ -97,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         setOnClick(button6)
         setOnClick(button7)
         setOnClick(button8)
-        setOnClick(button9)
+        setOnClick(button9)*/
 
 
 
@@ -145,5 +147,10 @@ class MainActivity : AppCompatActivity() {
             tvDisplay.text = button0.text
         }*/
 
+
+        /*System.out.println(stringNumber.javaClass.name)
+                var x = "mama"
+                var y = "mami"
+                System.out.println(x.toInt() + y.toInt())*/
     }
 }
