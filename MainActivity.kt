@@ -59,14 +59,14 @@ class MainActivity : AppCompatActivity() {
             nextDisplay.text = stringNumber
             operatorDisplay.text = "+"
             tvDisplay.text = ""
-            stringNumber = ""
+            value2 = stringNumber.toString().toInt()
+            stringNumber.clear()
 
 
         }
 
         buttonEqual.setOnClickListener {
             value1 = nextDisplay.text.toString().toInt()
-            value2 = stringNumber.toInt()
             result = value1 + value2
             tvDisplay.text = result.toString()
             stringNumber = ""
