@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
-    private var stringNumber = StringBuilder()
+    //private var stringNumber = StringBuilder()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         //action once clicked, in this case we are telling the setOnClickListener to get the var stringNumber and add
         //it the text of button, and then tvDisplay.text is going to be equal to stringNumber with the button text
         //previously added
-
+        var stringNumber = StringBuilder()
         var buttonsNumbers: Array<Button>
         tvDisplay.text = ""
         nextDisplay.text = ""
@@ -56,15 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        //click a number and displays in the screen
-        /*fun setOnClick(button: Button){
-            button.setOnClickListener {
-                //stringNumber += button.text
-                stringNumber.append(button.text)
-                tvDisplay.text = stringNumber
 
-            }
-        }*/
 
 
         buttonPlus.setOnClickListener {
@@ -88,7 +80,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        //click a number and displays in the screen
+                /*fun setOnClick(button: Button){
+                    button.setOnClickListener {
+                        //stringNumber += button.text
+                        stringNumber.append(button.text)
+                        tvDisplay.text = stringNumber
 
+                    }
+                }*/
 
         /*setOnClick(button0)
         setOnClick(button1)
