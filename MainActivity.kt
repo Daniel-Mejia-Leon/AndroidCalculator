@@ -46,14 +46,17 @@ class MainActivity : AppCompatActivity() {
         var value2: Int
         var result: Int
 
+
+        //click a number and displays in the screen
         fun setOnClick(button: Button){
             button.setOnClickListener {
                 //stringNumber += button.text
-                stringNumber.append(button)
+                stringNumber.append(button.text)
                 tvDisplay.text = stringNumber
 
             }
         }
+
 
         buttonPlus.setOnClickListener {
             nextDisplay.text = stringNumber
