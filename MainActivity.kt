@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         var value1: Int
         var value2: Int
         var result: Int
+        //println(stringNumber.javaClass.name)
 
 
         //click a number and displays in the screen
@@ -70,14 +71,16 @@ class MainActivity : AppCompatActivity() {
 
         buttonEqual.setOnClickListener {
             value1 = nextDisplay.text.toString().toInt()
+            value2 = tvDisplay.text.toString().toInt()
             result = value1 + value2
             tvDisplay.text = result.toString()
-            stringNumber = ""
+            stringNumber.clear()
             nextDisplay.text = ""
             operatorDisplay.text = ""
 
 
         }
+
 
         /*System.out.println(stringNumber.javaClass.name)
         var x = "mama"
