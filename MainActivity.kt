@@ -3,13 +3,15 @@ package com.example.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
     //private var stringNumber = StringBuilder()
+    private lateinit var operator: String
+    //private var result: Int
+    lateinit var operation: String
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -40,14 +42,17 @@ class MainActivity : AppCompatActivity() {
         //previously added
         var stringNumber = StringBuilder()
         var buttonsNumbers: Array<Button>
+        var buttonsOperator: Array<Button>
         tvDisplay.text = ""
         nextDisplay.text = ""
         //var stringNumber = ""
         var value1: Int
         var value2: Int
         var result: Int
-        //println(buttonsNumbers.indices.javaClass.name)
 
+
+        //println(buttonsNumbers.indices.javaClass.name)
+        buttonsOperator = arrayOf(buttonPlus, buttonMin, buttonDiv, buttonTimes)
         buttonsNumbers = arrayOf(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9)
         for (i in buttonsNumbers){
             i.setOnClickListener {
@@ -57,9 +62,75 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        for (i in buttonsOperator){
+            i.setOnClickListener {
+                if (i.text == "+") {
+                    nextDisplay.text = stringNumber
+                    operatorDisplay.text = i.text
+                    tvDisplay.text = ""
+                    operation = "plus"
+                    //value2 = stringNumber.toString().toInt()
+                    stringNumber.clear()
+                }
+                if (i.text == "-") {
+                    nextDisplay.text = stringNumber
+                    operatorDisplay.text = i.text
+                    tvDisplay.text = ""
+                    operation = "minus"
+                    //value2 = stringNumber.toString().toInt()
+                    stringNumber.clear()
+
+                }
+                if (i.text == "/") {
+                    nextDisplay.text = stringNumber
+                    operatorDisplay.text = i.text
+                    tvDisplay.text = ""
+                    operation = "division"
+                    //value2 = stringNumber.toString().toInt()
+                    stringNumber.clear()
+
+                }
+                if (i.text == "x") {
+                    nextDisplay.text = stringNumber
+                    operatorDisplay.text = i.text
+                    tvDisplay.text = ""
+                    operation = "times"
+                    //value2 = stringNumber.toString().toInt()
+                    stringNumber.clear()
+
+                }
+            }
+        }
+
+        /*fun operatorType(operationButton: Button){
+            if (operationButton.text == "+"){
+                nextDisplay.text = stringNumber
+                operatorDisplay.text = operationButton.text
+                tvDisplay.text = ""
+                operation = "plus"
+            }
+            if (operationButton.text == "-"){
+                nextDisplay.text = stringNumber
+                operatorDisplay.text = operationButton.text
+                tvDisplay.text = ""
+                operation = "minus"
+            }
+            if (operationButton.text == "/"){
+                nextDisplay.text = stringNumber
+                operatorDisplay.text = operationButton.text
+                tvDisplay.text = ""
+                operation = "division"
+            }
+            if (operationButton.text == "x"){
+                nextDisplay.text = stringNumber
+                operatorDisplay.text = operationButton.text
+                tvDisplay.text = ""
+                operation = "times"
+            }
+        }*/
 
 
-        buttonPlus.setOnClickListener {
+        /*buttonPlus.setOnClickListener {
             nextDisplay.text = stringNumber
             operatorDisplay.text = "+"
             tvDisplay.text = ""
@@ -67,18 +138,43 @@ class MainActivity : AppCompatActivity() {
             stringNumber.clear()
 
 
-        }
+        }*/
 
         buttonEqual.setOnClickListener {
             value1 = nextDisplay.text.toString().toInt()
             value2 = tvDisplay.text.toString().toInt()
-            result = value1 + value2
-            tvDisplay.text = result.toString()
-            stringNumber.clear()
-            nextDisplay.text = ""
-            operatorDisplay.text = ""
+
+            if (operation == "plus"){
+                result = value1 + value2
+                tvDisplay.text = result.toString()
+                stringNumber.clear()
+                nextDisplay.text = ""
+                operatorDisplay.text = ""
+            }
+            if (operation == "times"){
+                result = value1 * value2
+                tvDisplay.text = result.toString()
+                stringNumber.clear()
+                nextDisplay.text = ""
+                operatorDisplay.text = ""
+            }
+            if (operation == "minus"){
+                result = value1 - value2
+                tvDisplay.text = result.toString()
+                stringNumber.clear()
+                nextDisplay.text = ""
+                operatorDisplay.text = ""
+            }
+            if (operation == "division"){
+                result = value1 / value2
+                tvDisplay.text = result.toString()
+                stringNumber.clear()
+                nextDisplay.text = ""
+                operatorDisplay.text = ""
+            }
 
         }
+
 
         //click a number and displays in the screen
                 /*fun setOnClick(button: Button){
