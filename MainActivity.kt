@@ -58,7 +58,13 @@ class MainActivity : AppCompatActivity() {
         //to send the number to nextDisplay and clearing to input the second number
         for (i in buttonsOperator) {
             i.setOnClickListener {
-                nextDisplay.text = stringNumber
+                if (resultDone){
+                    nextDisplay.text = result.toString()
+                }
+                else if (!resultDone){
+                    nextDisplay.text = stringNumber
+
+                }
                 operatorDisplay.text = i.text
                 tvDisplay.text = ""
                 stringNumber.clear()
@@ -81,11 +87,12 @@ class MainActivity : AppCompatActivity() {
                 "minus" -> result = value1 - value2
                 "division" -> result = value1 / value2
             }
-            //tvDisplay.text = result.toString()
+            tvDisplay.text = result.toString()
             //stringNumber.clear()
             nextDisplay.text = result.toString()
             operatorDisplay.text = ""
-            //resultDone = true
+            resultDone = true
+            //result = stringNumber.toString().toInt()
             //nextOperation = true
             //operatorPressed = false
         }
