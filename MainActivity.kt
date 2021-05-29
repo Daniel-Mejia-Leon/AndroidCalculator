@@ -56,7 +56,12 @@ class MainActivity : AppCompatActivity() {
                 tvDisplay.text = ""
                 stringNumber.clear()
                 //see function
-                operationType(i)
+                when(i.text){
+                    "/" -> operation = "division"
+                    "-" -> operation = "minus"
+                    "x" -> operation = "times"
+                    "+" -> operation = "plus"
+                }
             }
         }
 
@@ -77,14 +82,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    //for some reason i had to put this outside, didnt let me to call it from inside
-    fun operationType(i: Button) {
-        when (i.text) {
-            "/" -> operation = "division"
-            "-" -> operation = "minus"
-            "x" -> operation = "times"
-            "+" -> operation = "plus"
-        }
-    }
+
 
 }
