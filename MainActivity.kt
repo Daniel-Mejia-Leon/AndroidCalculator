@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         nextDisplay.text = ""
         var value1: Int
         var value2: Int
-        var result: Int
+        var result: Int = 0
 
         //println(buttonsNumbers.indices.javaClass.name)
         buttonsOperator = arrayOf(buttonPlus, buttonMin, buttonDiv, buttonTimes)
@@ -63,38 +63,19 @@ class MainActivity : AppCompatActivity() {
         buttonEqual.setOnClickListener {
             value1 = nextDisplay.text.toString().toInt()
             value2 = tvDisplay.text.toString().toInt()
+            when(operation){
+                "plus"     -> result = value1 + value2
+                "times"    -> result = value1 * value2
+                "minus"    -> result = value1 - value2
+                "division" -> result = value1 / value2
+            }
 
-            if (operation == "plus"){
-                result = value1 + value2
-                tvDisplay.text = result.toString()
-                stringNumber.clear()
-                nextDisplay.text = ""
-                operatorDisplay.text = ""
-            }
-            if (operation == "times"){
-                result = value1 * value2
-                tvDisplay.text = result.toString()
-                stringNumber.clear()
-                nextDisplay.text = ""
-                operatorDisplay.text = ""
-            }
-            if (operation == "minus"){
-                result = value1 - value2
-                tvDisplay.text = result.toString()
-                stringNumber.clear()
-                nextDisplay.text = ""
-                operatorDisplay.text = ""
-            }
-            if (operation == "division"){
-                result = value1 / value2
-                tvDisplay.text = result.toString()
-                stringNumber.clear()
-                nextDisplay.text = ""
-                operatorDisplay.text = ""
-            }
+            tvDisplay.text = result.toString()
+            stringNumber.clear()
+            nextDisplay.text = ""
+            operatorDisplay.text = ""
 
         }
-
     }
     //for some reason i had to put this outside, didnt let me to call it from inside
     fun operationType(i: Button) {
@@ -105,4 +86,5 @@ class MainActivity : AppCompatActivity() {
             "+" -> operation = "plus"
         }
     }
+
 }
