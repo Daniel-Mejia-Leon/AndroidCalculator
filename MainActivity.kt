@@ -33,33 +33,40 @@ class MainActivity : AppCompatActivity() {
         val buttonsOperator: Array<Button>
         tvDisplay.text = ""
         nextDisplay.text = ""
-        var value1: Int
-        var value2: Int
+        var value1: Int = 0
+        var value2: Int = 0
         var result: Int = 0
-
+        var resultLoop: Int = 0
+        var resultDone: Boolean = false
+        var operatorPressed: Boolean = false
+        var numberPressed: Boolean = false
+        var nextOperation: Boolean = false
+        var firstOperation: Boolean = true
         //println(buttonsNumbers.indices.javaClass.name)
         buttonsOperator = arrayOf(buttonPlus, buttonMin, buttonDiv, buttonTimes)
         buttonsNumbers = arrayOf(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9)
         //this for is to display numbers in tvDisplay
-        for (i in buttonsNumbers){
+        for (i in buttonsNumbers) {
             i.setOnClickListener {
                 stringNumber.append(i.text)
                 tvDisplay.text = stringNumber
+                numberPressed = true
+
             }
         }
         //this is to identify what opeartion is going to be performed
         //to send the number to nextDisplay and clearing to input the second number
-        for (i in buttonsOperator){
+        for (i in buttonsOperator) {
             i.setOnClickListener {
                 nextDisplay.text = stringNumber
                 operatorDisplay.text = i.text
                 tvDisplay.text = ""
                 stringNumber.clear()
-                //see function
-                when(i.text){
+                //operatorPressed = true
+                when (i.text) {
                     "/" -> operation = "division"
                     "-" -> operation = "minus"
-                    "x" -> operation = "times"
+                    "*" -> operation = "times"
                     "+" -> operation = "plus"
                 }
             }
@@ -68,20 +75,79 @@ class MainActivity : AppCompatActivity() {
         buttonEqual.setOnClickListener {
             value1 = nextDisplay.text.toString().toInt()
             value2 = tvDisplay.text.toString().toInt()
-            when(operation){
-                "plus"     -> result = value1 + value2
-                "times"    -> result = value1 * value2
-                "minus"    -> result = value1 - value2
+            when (operation) {
+                "plus" -> result = value1 + value2
+                "times" -> result = value1 * value2
+                "minus" -> result = value1 - value2
                 "division" -> result = value1 / value2
             }
-
-            tvDisplay.text = result.toString()
-            stringNumber.clear()
-            nextDisplay.text = ""
+            //tvDisplay.text = result.toString()
+            //stringNumber.clear()
+            nextDisplay.text = result.toString()
             operatorDisplay.text = ""
-
+            //resultDone = true
+            //nextOperation = true
+            //operatorPressed = false
         }
+
+
+        /*if(resultDone){
+            firstOperation = false
+            //result = value1
+            //if (nextOperation){
+            for (i in buttonsNumbers){
+                i.setOnClickListener {
+                    stringNumber.append(i.text)
+                    tvDisplay.text = stringNumber
+                    numberPressed = true
+
+                }
+            }
+            for (i in buttonsOperator){
+                i.setOnClickListener {
+                    nextDisplay.text = result.toString()
+                    operatorDisplay.text = i.text
+                    tvDisplay.text = ""
+                    //stringNumber.clear()
+                    operatorPressed = true
+                    when(i.text){
+                        "/" -> operation = "division"
+                        "-" -> operation = "minus"
+                        "*" -> operation = "times"
+                        "+" -> operation = "plus"
+                    }
+                }
+            }
+            buttonEqual.setOnClickListener {
+                result = value1
+                value2 = tvDisplay.text.toString().toInt()
+                when(operation){
+                    "plus"     -> resultLoop = value1 + value2
+                    "times"    -> resultLoop = value1 * value2
+                    "minus"    -> resultLoop = value1 - value2
+                    "division" -> resultLoop = value1 / value2
+                }
+                tvDisplay.text = resultLoop.toString()
+                stringNumber.clear()
+                nextDisplay.text = ""
+                operatorDisplay.text = ""
+                resultDone = true
+                operatorPressed = false
+            }
+            //}
+
+        }*/
+
+        /*if (resultDone && operatorPressed){
+            if (numberPressed){
+
+            }
+        }*/
+
     }
 
 
+
+
 }
+
