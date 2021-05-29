@@ -7,15 +7,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     //private var stringNumber = StringBuilder()
-    private lateinit var operator: String
+    //private lateinit var operator: String
     //private var result: Int
     lateinit var operation: String
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
         //val tvDisplay:TextView = findViewById(R.id.tvDisplay)
         //tvDisplay.text = sum.toString()
@@ -24,121 +21,44 @@ class MainActivity : AppCompatActivity() {
         //then on the right upper corner we selected sync now, then on build we selected build Bundles
         //so now we do not need to specify the findViewById function since the system recognizes the
         //id as the var/val
-        /*val button9:Button = findViewById(R.id.button9)
-        val button8:Button = findViewById(R.id.button8)
-        val button7:Button = findViewById(R.id.button7)
-        val button6:Button = findViewById(R.id.button6)
-        val button5:Button = findViewById(R.id.button5)
-        val button4:Button = findViewById(R.id.button4)
-        val button3:Button = findViewById(R.id.button3)
-        val button2:Button = findViewById(R.id.button2)
-        val button1:Button = findViewById(R.id.button1)
-        val button0:Button = findViewById(R.id.button0)*/
+        /*val button9:Button = findViewById(R.id.button9)*/
 
         //so we created a function called setOnClick, with the parameter button, which is going to be button1/2/3/4 etc,
         //inside this setOnClick function we have the .setOnClickListener, which is the function that activates certain
         //action once clicked, in this case we are telling the setOnClickListener to get the var stringNumber and add
         //it the text of button, and then tvDisplay.text is going to be equal to stringNumber with the button text
         //previously added
-        var stringNumber = StringBuilder()
-        var buttonsNumbers: Array<Button>
-        var buttonsOperator: Array<Button>
+        val stringNumber = StringBuilder()
+        val buttonsNumbers: Array<Button>
+        val buttonsOperator: Array<Button>
         tvDisplay.text = ""
         nextDisplay.text = ""
-        //var stringNumber = ""
         var value1: Int
         var value2: Int
         var result: Int
 
-
         //println(buttonsNumbers.indices.javaClass.name)
         buttonsOperator = arrayOf(buttonPlus, buttonMin, buttonDiv, buttonTimes)
         buttonsNumbers = arrayOf(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9)
+        //this for is to display numbers in tvDisplay
         for (i in buttonsNumbers){
             i.setOnClickListener {
                 stringNumber.append(i.text)
                 tvDisplay.text = stringNumber
             }
-
         }
-
+        //this is to identify what opeartion is going to be performed
+        //to send the number to nextDisplay and clearing to input the second number
         for (i in buttonsOperator){
             i.setOnClickListener {
-                if (i.text == "+") {
-                    nextDisplay.text = stringNumber
-                    operatorDisplay.text = i.text
-                    tvDisplay.text = ""
-                    operation = "plus"
-                    //value2 = stringNumber.toString().toInt()
-                    stringNumber.clear()
-                }
-                if (i.text == "-") {
-                    nextDisplay.text = stringNumber
-                    operatorDisplay.text = i.text
-                    tvDisplay.text = ""
-                    operation = "minus"
-                    //value2 = stringNumber.toString().toInt()
-                    stringNumber.clear()
-
-                }
-                if (i.text == "/") {
-                    nextDisplay.text = stringNumber
-                    operatorDisplay.text = i.text
-                    tvDisplay.text = ""
-                    operation = "division"
-                    //value2 = stringNumber.toString().toInt()
-                    stringNumber.clear()
-
-                }
-                if (i.text == "x") {
-                    nextDisplay.text = stringNumber
-                    operatorDisplay.text = i.text
-                    tvDisplay.text = ""
-                    operation = "times"
-                    //value2 = stringNumber.toString().toInt()
-                    stringNumber.clear()
-
-                }
+                nextDisplay.text = stringNumber
+                operatorDisplay.text = i.text
+                tvDisplay.text = ""
+                stringNumber.clear()
+                //see function
+                operationType(i)
             }
         }
-
-        /*fun operatorType(operationButton: Button){
-            if (operationButton.text == "+"){
-                nextDisplay.text = stringNumber
-                operatorDisplay.text = operationButton.text
-                tvDisplay.text = ""
-                operation = "plus"
-            }
-            if (operationButton.text == "-"){
-                nextDisplay.text = stringNumber
-                operatorDisplay.text = operationButton.text
-                tvDisplay.text = ""
-                operation = "minus"
-            }
-            if (operationButton.text == "/"){
-                nextDisplay.text = stringNumber
-                operatorDisplay.text = operationButton.text
-                tvDisplay.text = ""
-                operation = "division"
-            }
-            if (operationButton.text == "x"){
-                nextDisplay.text = stringNumber
-                operatorDisplay.text = operationButton.text
-                tvDisplay.text = ""
-                operation = "times"
-            }
-        }*/
-
-
-        /*buttonPlus.setOnClickListener {
-            nextDisplay.text = stringNumber
-            operatorDisplay.text = "+"
-            tvDisplay.text = ""
-            value2 = stringNumber.toString().toInt()
-            stringNumber.clear()
-
-
-        }*/
 
         buttonEqual.setOnClickListener {
             value1 = nextDisplay.text.toString().toInt()
@@ -175,78 +95,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-        //click a number and displays in the screen
-                /*fun setOnClick(button: Button){
-                    button.setOnClickListener {
-                        //stringNumber += button.text
-                        stringNumber.append(button.text)
-                        tvDisplay.text = stringNumber
-
-                    }
-                }*/
-
-        /*setOnClick(button0)
-        setOnClick(button1)
-        setOnClick(button2)
-        setOnClick(button3)
-        setOnClick(button4)
-        setOnClick(button5)
-        setOnClick(button6)
-        setOnClick(button7)
-        setOnClick(button8)
-        setOnClick(button9)*/
-
-
-
-        /*button9.setOnClickListener {
-            tvDisplay.text = button9.text
+    }
+    //for some reason i had to put this outside, didnt let me to call it from inside
+    fun operationType(i: Button) {
+        when (i.text) {
+            "/" -> operation = "division"
+            "-" -> operation = "minus"
+            "x" -> operation = "times"
+            "+" -> operation = "plus"
         }
-
-        button8.setOnClickListener {
-            tvDisplay.text = button8.text
-        }
-
-        button7.setOnClickListener {
-            tvDisplay.text= button7.text
-        }
-
-        button6.setOnClickListener {
-            tvDisplay.text = button6.text
-        }
-
-        button5.setOnClickListener {
-            tvDisplay.text = button5.text
-        }
-
-        button4.setOnClickListener {
-            tvDisplay.text = button4.text
-        }
-
-        button3.setOnClickListener {
-            tvDisplay.text = button3.text
-        }
-
-        button3.setOnClickListener {
-            tvDisplay.text = button3.text
-        }
-
-        button2.setOnClickListener {
-            tvDisplay.text = button2.text
-        }
-
-        button1.setOnClickListener {
-            tvDisplay.text = button1.text
-        }
-
-        button0.setOnClickListener {
-            tvDisplay.text = button0.text
-        }*/
-
-
-        /*System.out.println(stringNumber.javaClass.name)
-                var x = "mama"
-                var y = "mami"
-                System.out.println(x.toInt() + y.toInt())*/
     }
 }
