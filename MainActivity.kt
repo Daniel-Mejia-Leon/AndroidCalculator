@@ -42,33 +42,37 @@ class MainActivity : AppCompatActivity() {
         var numberPressed: Boolean = false
         var nextOperation: Boolean = false
         var firstOperation: Boolean = true
+        var x: Int = 0
+        var y: Int = 0
         //println(buttonsNumbers.indices.javaClass.name)
         buttonsOperator = arrayOf(buttonPlus, buttonMin, buttonDiv, buttonTimes)
         buttonsNumbers = arrayOf(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9)
         //this for is to display numbers in tvDisplay
         for (i in buttonsNumbers) {
             i.setOnClickListener {
+                if(resultDone){
+                    stringNumber.clear()
+                    resultDone = false
+                }
                 stringNumber.append(i.text)
                 tvDisplay.text = stringNumber
-                numberPressed = true
-
             }
         }
         //this is to identify what opeartion is going to be performed
         //to send the number to nextDisplay and clearing to input the second number
         for (i in buttonsOperator) {
             i.setOnClickListener {
+                //resultDone is in buttonEqual.listener, this if statements is to continue the operation after getting a result
                 if (resultDone){
                     nextDisplay.text = result.toString()
                 }
                 else if (!resultDone){
                     nextDisplay.text = stringNumber
-
                 }
+                resultDone = false
                 operatorDisplay.text = i.text
                 tvDisplay.text = ""
                 stringNumber.clear()
-                //operatorPressed = true
                 when (i.text) {
                     "/" -> operation = "division"
                     "-" -> operation = "minus"
@@ -87,74 +91,11 @@ class MainActivity : AppCompatActivity() {
                 "minus" -> result = value1 - value2
                 "division" -> result = value1 / value2
             }
-            tvDisplay.text = result.toString()
-            //stringNumber.clear()
+            tvDisplay.text = ""
             nextDisplay.text = result.toString()
             operatorDisplay.text = ""
             resultDone = true
-            //result = stringNumber.toString().toInt()
-            //nextOperation = true
-            //operatorPressed = false
         }
-
-
-        /*if(resultDone){
-            firstOperation = false
-            //result = value1
-            //if (nextOperation){
-            for (i in buttonsNumbers){
-                i.setOnClickListener {
-                    stringNumber.append(i.text)
-                    tvDisplay.text = stringNumber
-                    numberPressed = true
-
-                }
-            }
-            for (i in buttonsOperator){
-                i.setOnClickListener {
-                    nextDisplay.text = result.toString()
-                    operatorDisplay.text = i.text
-                    tvDisplay.text = ""
-                    //stringNumber.clear()
-                    operatorPressed = true
-                    when(i.text){
-                        "/" -> operation = "division"
-                        "-" -> operation = "minus"
-                        "*" -> operation = "times"
-                        "+" -> operation = "plus"
-                    }
-                }
-            }
-            buttonEqual.setOnClickListener {
-                result = value1
-                value2 = tvDisplay.text.toString().toInt()
-                when(operation){
-                    "plus"     -> resultLoop = value1 + value2
-                    "times"    -> resultLoop = value1 * value2
-                    "minus"    -> resultLoop = value1 - value2
-                    "division" -> resultLoop = value1 / value2
-                }
-                tvDisplay.text = resultLoop.toString()
-                stringNumber.clear()
-                nextDisplay.text = ""
-                operatorDisplay.text = ""
-                resultDone = true
-                operatorPressed = false
-            }
-            //}
-
-        }*/
-
-        /*if (resultDone && operatorPressed){
-            if (numberPressed){
-
-            }
-        }*/
-
     }
-
-
-
-
 }
 
